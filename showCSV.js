@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const csv = fs.readFileSync('./oscar_best_pictures.csv').toString();
+const {quebraLinhas, separaColunas, separaConteudo, constroiListaDeObj} = require('./csv');
 
 const linhas = quebraLinhas(csv);
 const primeiraLinha = linhas.shift();
@@ -10,7 +11,7 @@ const conteudo = separaConteudo(linhas);
 
 console.log(headers);
 console.log(conteudo);
-const json = parteDificil(headers, conteudo);
+const json = constroiListaDeObj(headers, conteudo);
 
 console.table(json, ["Filme", "Ano", "Gênero"]);
 
